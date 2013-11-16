@@ -1,0 +1,17 @@
+name:           TheCodeOfLife
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         ejhunter
+
+executable TheCodeOfLife
+  hs-source-dirs:  src
+  main-is:         Main.hs
+  build-depends:   
+                   base >= 4,
+                   GLUT >=2.3.1 && <2.4
+  ghc-options:     -Wall
+  other-modules:   
+                   Display,
+                   Input
+
