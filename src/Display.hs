@@ -2,6 +2,7 @@ module Display (display, handleReshape, animate) where
 
 import Graphics.UI.GLUT
 import Data.IORef
+import Control.Monad
 
 ver3d :: (GLdouble, GLdouble, GLdouble) -> IO ()
 ver3d (x, y, z) = vertex $ Vertex3 x y z
@@ -35,18 +36,24 @@ display angle zm tx tz= do
         rotate thetaz $ vec3f 0.0 0.0 1.0
         translate $ vec3f 0.0 0.0 0.0
                 
-        preservingMatrix $ do
-                colour (1,0,0)
-                renderPrimitive LineStrip $ mapM_ ver3d helix
-        preservingMatrix $ do
-                colour (0,1,0)
-                rotate (-90.0) $ vec3f 0.0 0.0 1.0
-                renderPrimitive LineStrip $ mapM_ ver3d helix
-        preservingMatrix $ do
-                colour (0,0,1)
-                rotate (-180.0) $ vec3f 0.0 0.0 1.0
-                renderPrimitive LineStrip $ mapM_ ver3d helix
-                
+--        preservingMatrix $ do
+--                colour (1,0,0)
+--                renderPrimitive LineStrip $ mapM_ ver3d helix
+--        preservingMatrix $ do
+--                colour (0,1,0)
+--                rotate (-90.0) $ vec3f 0.0 0.0 1.0
+--                renderPrimitive LineStrip $ mapM_ ver3d helix
+--        preservingMatrix $ do
+--                colour (0,0,1)
+--                rotate (-180.0) $ vec3f 0.0 0.0 1.0
+--                renderPrimitive LineStrip $ mapM_ ver3d helix
+
+        forM_ helix $ \(x,y,z) ->
+                preservingMatrix $ do
+                        translate $ vec3f x y z
+                        rotate 1 $ vec3f x y 0.0
+                        renderPrimitive Lines $ mapM_ ver3d [(x,y,z), (-0.5 * cos ((-2*z) - (0.1/phi)), -0.5 * sin ((-2*z) + (0.1/phi)), -0.5 * z)]
+                        
         swapBuffers
 
 helix :: [(GLdouble,GLdouble,GLdouble)]
@@ -62,5 +69,5 @@ handleReshape size = do
 
 animate :: IORef GLdouble -> IdleCallback
 animate angle = do
-        angle $~! (+ (0.02/phi))
+        --angle $~! (+ (0.02/phi))
         postRedisplay Nothing
