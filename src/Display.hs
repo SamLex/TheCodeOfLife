@@ -45,13 +45,13 @@ display angle zm tx tz= do
                 rotate (-180.0) $ vec3f 0.0 0.0 1.0
                 renderPrimitive LineStrip $ mapM_ ver3d helix
         
-        preservingMatrix $
-                forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t) ->
-                        renderPrimitive Lines $ preservingMatrix $ do
-                                        colour (1,0,0)
-                                        ver3d (helixf t t)
-                                        colour (0,0,1)
-                                        ver3d (helixf (t-pi) t)
+--        preservingMatrix $
+--                forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t) ->
+--                        renderPrimitive Lines $ preservingMatrix $ do
+--                                        colour (1,0,0)
+--                                        ver3d (helixf t t)
+--                                        colour (0,0,1)
+--                                        ver3d (helixf (t-pi) t)
                                         
 --        renderPrimitive Lines $ mapM_ ver3d [(0,0,-pi), (0,0,pi)]
 --        renderPrimitive Lines $ mapM_ ver3d [(-0.5,0,0), (0.5,0,0)]
@@ -60,10 +60,14 @@ display angle zm tx tz= do
 --                rotate 90.0 $ vec3f 0.0 1.0 0.0
 --                renderPrimitive Points $ mapM_ ver3d [(0.125 * 0.5 * cos t, 0.125 * 0.5 * sin t, (1/(4*pi)) * t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
         
+        rotate (-36.1) $ vec3f 0.0 0.0 1.0
         forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t1) ->
+                do
+                rotate 36.1 $ vec3f 0.0 0.0 1.0
                 preservingMatrix $ do
                         translate $ vec3f 0.0 0.0 (0.5 * t1)
-                        renderPrimitive Points $ mapM_ ver3d [( (1/(4*pi)) * t,0.125 * 0.5 * sin t,0.125 * 0.5 * cos t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
+                        colour (1,1,1)
+                        renderPrimitive LineStrip $ mapM_ ver3d [( (1/(4*pi)) * t,0.125 * 0.5 * sin t,0.125 * 0.5 * cos t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
         
         swapBuffers
 
