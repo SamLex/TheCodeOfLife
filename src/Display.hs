@@ -25,6 +25,8 @@ display angle zm tx tz= do
         clear [ColorBuffer, DepthBuffer]
         loadIdentity
         
+        translate $ vec3f 0.0 0.0 (-1.0)
+        
         zoom <- get zm
         thetax <- get tx
         thetaz <- get tz
@@ -34,40 +36,63 @@ display angle zm tx tz= do
         rotate theta $ vec3f 0.0 0.0 1.0
         rotate thetax $ vec3f 1.0 0.0 0.0
         rotate thetaz $ vec3f 0.0 0.0 1.0
-        translate $ vec3f 0.0 0.0 0.0
                 
---        preservingMatrix $ do
---                colour (1,0,0)
---                renderPrimitive LineStrip $ mapM_ ver3d helix
---        preservingMatrix $ do
---                colour (0,1,0)
---                rotate (-90.0) $ vec3f 0.0 0.0 1.0
---                renderPrimitive LineStrip $ mapM_ ver3d helix
---        preservingMatrix $ do
---                colour (0,0,1)
---                rotate (-180.0) $ vec3f 0.0 0.0 1.0
---                renderPrimitive LineStrip $ mapM_ ver3d helix
-
-        forM_ helix $ \(x,y,z) ->
+        preservingMatrix $ do
+                colour (1,0,0)
+                renderPrimitive LineStrip $ mapM_ ver3d helix
+        preservingMatrix $ do
+                colour (0,0,1)
+                rotate (-180.0) $ vec3f 0.0 0.0 1.0
+                renderPrimitive LineStrip $ mapM_ ver3d helix
+        
+        preservingMatrix $
+                forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t) ->
+                        renderPrimitive Lines $ preservingMatrix $ do
+                                        colour (1,0,0)
+                                        ver3d (helixf t t)
+                                        colour (0,0,1)
+                                        ver3d (helixf (t-pi) t)
+                                        
+--        renderPrimitive Lines $ mapM_ ver3d [(0,0,-pi), (0,0,pi)]
+--        renderPrimitive Lines $ mapM_ ver3d [(-0.5,0,0), (0.5,0,0)]
+--
+--        preservingMatrix $ do        
+--                rotate 90.0 $ vec3f 0.0 1.0 0.0
+--                renderPrimitive Points $ mapM_ ver3d [(0.125 * 0.5 * cos t, 0.125 * 0.5 * sin t, (1/(4*pi)) * t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
+        
+        forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t1) ->
                 preservingMatrix $ do
-                        translate $ vec3f x y z
-                        rotate 1 $ vec3f x y 0.0
-                        renderPrimitive Lines $ mapM_ ver3d [(x,y,z), (-0.5 * cos ((-2*z) - (0.1/phi)), -0.5 * sin ((-2*z) + (0.1/phi)), -0.5 * z)]
-                        
+                        translate $ vec3f 0.0 0.0 (0.5 * t1)
+                        renderPrimitive Points $ mapM_ ver3d [( (1/(4*pi)) * t,0.125 * 0.5 * sin t,0.125 * 0.5 * cos t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
+        
         swapBuffers
 
 helix :: [(GLdouble,GLdouble,GLdouble)]
-helix = [(-0.5 * cos t, -0.5 * sin t, -0.5 * t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
- 
+helix = [(0.5 * cos t, 0.5 * sin t, 0.5 * t) | t <- fromTo (-2*pi) (2*pi) (0.1/phi)]
+
+helixf :: GLdouble -> GLdouble -> (GLdouble, GLdouble, GLdouble)
+helixf t t1 = (0.5 * cos t, 0.5 * sin t, 0.5 * t1)
+
 phi :: GLdouble
 phi = (1 + sqrt 5)/2
 
 handleReshape :: ReshapeCallback
-handleReshape size = do
-        viewport $= (Position 0 0, size) 
+handleReshape (Size w h) = do
+        viewport $= (Position 0 0, Size w h)
+        matrixMode $= Projection 
+        loadIdentity
+        let znear   = 0.001
+            zfar    = 100.0
+            fov     = 90.0
+            angle   = (fov*pi)/360.0
+            ycomp   = znear / (cos angle / sin angle)
+            aspect  = fromIntegral w / fromIntegral h
+            xcomp   = ycomp*aspect
+        frustum (-xcomp) xcomp (-ycomp) ycomp znear zfar
+        matrixMode $= Modelview 0
         postRedisplay Nothing
 
 animate :: IORef GLdouble -> IdleCallback
 animate angle = do
-        --angle $~! (+ (0.02/phi))
+        angle $~! (+ (0.02/phi))
         postRedisplay Nothing
