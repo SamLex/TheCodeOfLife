@@ -13,5 +13,9 @@ executable TheCodeOfLife
   ghc-options:     -Wall
   other-modules:   
                    Display,
-                   Input
+                   Input,
+                   DNA,
+                   Helix,
+                   Math,
+                   Misc
 
