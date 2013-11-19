@@ -4,6 +4,7 @@ import Graphics.UI.GLUT
 import Data.IORef
 import Misc
 import DNA
+import Math
 
 display :: IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IO()
 display angle zm tx tz= do
@@ -22,7 +23,7 @@ display angle zm tx tz= do
         rotate thetax $ vec3f 1.0 0.0 0.0
         rotate thetaz $ vec3f 0.0 0.0 1.0
         
-        render (newDNA 2) 1 1
+        render (newDNA 4) 1 1
 --        preservingMatrix $ do
 --                colour (1,0,0)
 --                renderPrimitive LineStrip $ mapM_ ver3d helix
@@ -68,5 +69,5 @@ handleReshape (Size w h) = do
 
 animate :: IORef GLdouble -> IdleCallback
 animate angle = do
-        --angle $~! (+ (0.02/phi))
+        angle $~! (+ (0.02/phi))
         postRedisplay Nothing
