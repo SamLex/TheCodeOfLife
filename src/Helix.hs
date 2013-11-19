@@ -1,4 +1,4 @@
-module Helix (newHelix, renderHelix) where
+module Helix (renderHelix, genHelix, HelixModel, Helix, newHelix, extractHeight) where
 
 import Graphics.UI.GLUT
 import Math
@@ -6,13 +6,16 @@ import Misc
 
 data Helix height radius = Helix height radius
 
-type HelixType = Helix GLdouble GLdouble
+type HelixModel = Vert3L
 
-genHelix :: HelixType -> GLdouble -> [(GLdouble, GLdouble, GLdouble)]
-genHelix (Helix height radius) d = [(radius * cos t, radius * sin t, height * t) | t <- fromTo (-2*pi) (2*pi) (phi/d)]
+genHelix :: Helix GLdouble GLdouble -> GLdouble -> GLdouble -> Vert3L
+genHelix (Helix height radius) d phase = [(radius * cos (t-phase), radius * sin (t-phase), height * t) | t <- fromTo (-2*pi) (2*pi) (phi/d)]
 
-renderHelix :: HelixType -> GLdouble -> IO ()
-renderHelix helix d = renderPrimitive LineStrip $ mapM_ ver3d (genHelix helix d)
+renderHelix :: HelixModel -> IO ()
+renderHelix helix = renderPrimitive LineStrip $ mapM_ ver3d helix
 
-newHelix :: GLdouble -> GLdouble -> HelixType
+newHelix :: GLdouble -> GLdouble -> Helix GLdouble GLdouble
 newHelix = Helix
+
+extractHeight :: Helix GLdouble GLdouble -> GLdouble
+extractHeight (Helix h _) = h

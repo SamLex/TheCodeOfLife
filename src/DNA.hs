@@ -1,44 +1,47 @@
-module DNA (newDNA, render) where
+module DNA (newDNA, DNAModel,renderDNA, genDNA, updateModel) where
 
 import Control.Monad
 import Graphics.UI.GLUT
 import Misc
 import Helix
 import Math
+import DoubleHelix
+import Data.IORef
 
 data DNA level = DNA level
 
-render :: DNA Int -> GLdouble -> GLdouble -> IO ()
-render (DNA 0) _ _ = colour (0.0, 0.0, 1.0)
-render (DNA 1) h r = do
-                                colour (1.0, 0.0, 0.0)
-                                preMat $ renderHelix (newHelix h r) 1.0
-                                preMat $ do
-                                        rotate (-180) $ vec3f 0.0 0.0 1.0
-                                        renderHelix (newHelix h r) 1.0
-render (DNA len) h r = do
-                                colour (0.0, 1.0, 0.0)
-                                preMat $ renderHelix (newHelix h r) 10.0
-                                preMat $ do
-                                        rotate (-180) $ vec3f 0.0 0.0 1.0
-                                        renderHelix (newHelix h r) 10.0
-                                preMat $ do
-                                        rotate (-36) $ vec3f 0.0 0.0 1.0
-                                        forM_ n $ \(t) ->
-                                                do
-                                                colour (0.0, 0.0, 1.0)
+type DNAModel = [DoubleHelixModel]
+        
+renderDNA :: DNAModel -> IO ()
+renderDNA d = r d (length d)
+        where
+        r _ 0 = return ()
+        r dna 1 = renderDHelix (head dna)
+        r dna l = do
+                        renderDHelix (head dna)
+                        preservingMatrix $ do
+                                rotate (-36) $ vec3f 0.0 0.0 1.0
+                                forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t) ->
+                                        do
                                                 rotate 36 $ vec3f 0.0 0.0 1.0
-                                                preMat $ do
-                                                        translate $ vec3f 0.0 0.0 (t * r)
+                                                preservingMatrix $ do
+                                                        translate $ vec3f 0.0 0.0 (t * DNA.extractHeight (head dna))
+                                                        rotate 36 $ vec3f 1.0 0.0 0.0
                                                         m <- newMatrix RowMajor [0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1] :: IO (GLmatrix GLdouble)
                                                         multMatrix m
-                                                        colour (0.0, 0.0, 1.0)
-                                                        render (DNA (len-1)) ((1/(2*pi)) * h) (0.125 * r)
-                                                        --renderHelix (newHelix (1/(2*pi)) 0.125)
-                                --render (DNA (len-2)) (1/(2*pi)) 0.125
-                                        
-        where
-        n = fromTo (-2*pi) (2*pi) (1/phi) 
-
+                                                        r (tail dna) (l-1)
+                                                        
+        
+genDNA :: DNA Int -> GLdouble -> GLdouble -> DNAModel
+genDNA (DNA 0) _ _= []
+genDNA (DNA l) h r = genDHelix (newHelix h r) 10.0 : genDNA (newDNA (l-1)) ((1/(2*pi)) * h) (0.125 * r)
+        
 newDNA :: Int -> DNA Int
 newDNA = DNA
+
+extractHeight :: DoubleHelixModel -> GLdouble
+extractHeight (_,_,h) = h
+
+updateModel :: IORef DNAModel -> Bool -> Int -> IO ()
+updateModel dna update level | update = writeIORef dna (genDNA (newDNA level) 1.0 1.0)
+                             | otherwise = return ()

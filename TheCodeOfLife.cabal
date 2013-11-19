@@ -17,5 +17,6 @@ executable TheCodeOfLife
                    DNA,
                    Helix,
                    Math,
-                   Misc
+                   Misc,
+                   DoubleHelix
 

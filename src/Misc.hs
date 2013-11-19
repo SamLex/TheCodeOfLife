@@ -2,9 +2,6 @@ module Misc where
 
 import Graphics.UI.GLUT
 
-preMat :: IO a -> IO a
-preMat = preservingMatrix
-
 vec3f :: GLdouble -> GLdouble -> GLdouble -> Vector3 GLdouble
 vec3f = Vector3
 
@@ -16,3 +13,5 @@ colour (r, b, g) = color $ Color3 r b g
 
 evenScale :: GLdouble -> IO ()
 evenScale s = scale s s s
+
+type Vert3L = [(GLdouble,GLdouble,GLdouble)]
