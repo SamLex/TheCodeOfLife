@@ -12,24 +12,24 @@ data DNA level = DNA level
 
 type DNAModel = [DoubleHelixModel]
         
-renderDNA :: DNAModel -> IO ()
-renderDNA d = r d (length d)
+renderDNA :: DNAModel -> IORef Int -> IO ()
+renderDNA d md = r d md (length d)
         where
-        r _ 0 = return ()
-        r dna 1 = renderDHelix (head dna)
-        r dna l = do
-                        renderDHelix (head dna)
+        r _ _ 0 = return ()
+        r dna mode 1 = renderDHelix (head dna) mode
+        r dna mode l = do
+                        renderDHelix (head dna) mode
                         preservingMatrix $ do
                                 rotate (-36) $ vec3f 0.0 0.0 1.0
                                 forM_ (fromTo (-2*pi) (2*pi) (1/phi)) $ \(t) ->
                                         do
                                                 rotate 36 $ vec3f 0.0 0.0 1.0
                                                 preservingMatrix $ do
-                                                        translate $ vec3f 0.0 0.0 (t * DNA.extractHeight (head dna))
+                                                        translate $ vec3f 0.0 0.0 (t * DoubleHelix.extractHeight (head dna))
                                                         rotate 36 $ vec3f 1.0 0.0 0.0
                                                         m <- newMatrix RowMajor [0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1] :: IO (GLmatrix GLdouble)
                                                         multMatrix m
-                                                        r (tail dna) (l-1)
+                                                        r (tail dna) mode (l-1)
                                                         
         
 genDNA :: DNA Int -> GLdouble -> GLdouble -> DNAModel
@@ -38,9 +38,6 @@ genDNA (DNA l) h r = genDHelix (newHelix h r) 10.0 : genDNA (newDNA (l-1)) ((1/(
         
 newDNA :: Int -> DNA Int
 newDNA = DNA
-
-extractHeight :: DoubleHelixModel -> GLdouble
-extractHeight (_,_,h) = h
 
 updateModel :: IORef DNAModel -> Bool -> Int -> IO ()
 updateModel dna update level | update = writeIORef dna (genDNA (newDNA level) 1.0 1.0)

@@ -5,8 +5,8 @@ import Data.IORef
 import Misc
 import DNA
 
-display :: IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IORef DNAModel -> IO()
-display angle zm tx tz d = do
+display :: IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IORef GLdouble -> IORef DNAModel -> IORef Int -> IO()
+display angle zm tx tz d m = do
         clear [ColorBuffer, DepthBuffer]
         loadIdentity
         
@@ -22,9 +22,11 @@ display angle zm tx tz d = do
         rotate theta $ vec3f 0.0 0.0 1.0
         rotate thetax $ vec3f 1.0 0.0 0.0
         rotate thetaz $ vec3f 0.0 0.0 1.0
+--        
+        renderDNA dna m
         
-        renderDNA dna
-        
+        -- renderObject Wireframe (Sphere' 1 100 100)
+        -- renderObject Wireframe (Cylinder' 1 2 10 10)
         swapBuffers
 
 handleReshape :: ReshapeCallback

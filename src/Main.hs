@@ -23,10 +23,11 @@ init = do
         tz <- newIORef 0.0
         level <- newIORef 2
         dna <- newIORef (genDNA (newDNA 4) 1.0 1.0)
+        mode <- newIORef 1
         update <- newIORef False
         keyboardMouseCallback $= Just (input zm tx tz)
         angle <- newIORef 0.0
         idleCallback $= Just (animate dna update level)
-        displayCallback $= display angle zm tx tz dna
+        displayCallback $= display angle zm tx tz dna mode
         windowSize $= Size 800 800
         mainLoop
