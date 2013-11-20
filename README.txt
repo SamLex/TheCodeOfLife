@@ -1,5 +1,6 @@
 The Code Of Life
 By Euan Hunter (s1322315)
+https://github.com/SamLex/TheCodeOfLife
 
 Renders a 3D interactive model of DNA (a double helix) in a recursive manner in which the bonds of the DNA are made up of more double helices and so on. 
 Be Warned! This program can be very tasking on your PC
