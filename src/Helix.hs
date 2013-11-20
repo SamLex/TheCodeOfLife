@@ -1,9 +1,9 @@
-module Helix (renderHelix, genHelix, HelixModel, Helix, newHelix, extractHeight, extractRadius) where
+module Helix (genHelix, extractHeight, renderHelix, Helix, HelixModel, newHelix) where
 
-import Graphics.UI.GLUT
-import Math
-import Misc
-import Control.Monad
+import           Control.Monad
+import           Graphics.UI.GLUT
+import           Math
+import           Misc
 
 data Helix height radius = Helix height radius
 
@@ -23,12 +23,9 @@ renderHelix helix mode | mode == 0 = renderPrimitive LineStrip $ mapM_ ver3d hel
                                                         translate $ vec3f x y z
                                                         rotate (-90) $ vec3f 1.0 0.0 0.0
                                                         renderObject Solid (Teapot (distanceBetween (head helix) (head (tail helix))/2))
-                                                                                                        
+
 newHelix :: GLdouble -> GLdouble -> Helix GLdouble GLdouble
 newHelix = Helix
 
 extractHeight :: Helix GLdouble GLdouble -> GLdouble
 extractHeight (Helix h _) = h
-
-extractRadius :: Helix GLdouble GLdouble -> GLdouble
-extractRadius (Helix _ r) = r

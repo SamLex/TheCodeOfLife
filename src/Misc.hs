@@ -1,6 +1,6 @@
 module Misc (evenScale, colour, ver3d, vec3f, Vert3L) where
 
-import Graphics.UI.GLUT
+import           Graphics.UI.GLUT
 
 type Vert3L = [(GLdouble,GLdouble,GLdouble)]
 
