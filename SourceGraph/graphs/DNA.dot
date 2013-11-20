@@ -1,0 +1,36 @@
+digraph "Diagram of: DNA" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    subgraph cluster_Data_DNA {
+        graph [label="Data: DNA"
+              ,style="filled,rounded"
+              ,fillcolor=papayawhip];
+        1 [label=DNA
+          ,shape=box3d
+          ,fillcolor=cyan
+          ,style="filled,bold"];
+    }
+    2 [label=genDNA
+      ,shape=box
+      ,fillcolor=goldenrod
+      ,style="filled,bold"];
+    3 [label=newDNA
+      ,shape=box
+      ,fillcolor=goldenrod
+      ,style="filled,bold"];
+    4 [label=renderDNA
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    5 [label=updateModel
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    2 -> 1 [penwidth=1.6931471805599454
+           ,color=black];
+    2 -> 2 [penwidth=1,color=black];
+    2 -> 3 [penwidth=1,color=black];
+    3 -> 1 [penwidth=1,color=black];
+    5 -> 2 [penwidth=1,color=black];
+    5 -> 3 [penwidth=1,color=black];
+}

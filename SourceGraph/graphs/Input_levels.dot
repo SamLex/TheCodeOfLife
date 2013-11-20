@@ -1,0 +1,24 @@
+digraph "Levels within Input" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    subgraph cluster_0 {
+        graph [label="Exported root entities"
+              ,style=filled
+              ,fillcolor=lavender];
+        1 [label=input
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+    }
+    subgraph cluster_1 {
+        graph [label="Level = 1"
+              ,style=filled
+              ,fillcolor=lavender];
+        2 [label=update
+          ,shape=box
+          ,fillcolor=cyan
+          ,style="filled,bold"];
+    }
+    1 -> 2 [penwidth=3.833213344056216
+           ,color=chartreuse];
+}

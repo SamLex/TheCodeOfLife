@@ -1,0 +1,16 @@
+digraph "Diagram of: Display" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    1 [label=animate
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    2 [label=display
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    3 [label=handleReshape
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+}

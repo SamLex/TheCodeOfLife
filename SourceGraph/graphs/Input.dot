@@ -1,0 +1,14 @@
+digraph "Diagram of: Input" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    1 [label=input
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    2 [label=update
+      ,shape=box
+      ,fillcolor=cyan
+      ,style="filled,bold"];
+    1 -> 2 [penwidth=3.833213344056216
+           ,color=chartreuse];
+}

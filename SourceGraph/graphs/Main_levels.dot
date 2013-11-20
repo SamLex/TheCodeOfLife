@@ -1,0 +1,22 @@
+digraph "Levels within Main" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    subgraph "cluster_-1" {
+        graph [label="Inaccessible entities"
+              ,style=filled
+              ,fillcolor=lavender];
+        1 [label=init
+          ,shape=box
+          ,fillcolor=crimson
+          ,style="filled,bold"];
+    }
+    subgraph cluster_0 {
+        graph [label="Exported root entities"
+              ,style=filled
+              ,fillcolor=lavender];
+        2 [label=main
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+    }
+}

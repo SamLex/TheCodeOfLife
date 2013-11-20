@@ -1,0 +1,16 @@
+digraph "Diagram of: DoubleHelix" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    1 [label=extractHeight
+      ,shape=box
+      ,fillcolor=crimson
+      ,style="filled,bold"];
+    2 [label=genDHelix
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+    3 [label=renderDHelix
+      ,shape=box
+      ,fillcolor=gold
+      ,style="filled,bold"];
+}

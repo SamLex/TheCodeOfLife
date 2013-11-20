@@ -1,0 +1,53 @@
+digraph "Levels within ProgramState" {
+    node [margin="0.4,0.1"
+         ,style=filled];
+    subgraph cluster_0 {
+        graph [label="Exported root entities"
+              ,style=filled
+              ,fillcolor=lavender];
+        1 [label=extractDNARef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        2 [label=extractLevelRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        3 [label=extractModeRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        4 [label=extractRXRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        5 [label=extractRYRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        6 [label=extractRZRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        7 [label=extractTXRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        8 [label=extractTYRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        9 [label=extractUpdateRef
+          ,shape=box
+          ,fillcolor=gold
+          ,style="filled,bold"];
+        10 [label=extractZoomRef
+           ,shape=box
+           ,fillcolor=gold
+           ,style="filled,bold"];
+        11 [label=newProgramState
+           ,shape=box
+           ,fillcolor=gold
+           ,style="filled,bold"];
+    }
+}
