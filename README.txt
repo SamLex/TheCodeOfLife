@@ -7,7 +7,7 @@ Be Warned! This program can be very tasking on your PC
 Entry for the Inf1–FP Programming Competition 2013
 
 Usage:
-Compile the codee using ghc --make Main and then run the executable that it generates.
+Compile the code using ghc --make Main and then run the executable that it generates.
 
 Keyboard Controls:
 
@@ -18,4 +18,4 @@ Keyboard Controls:
  	1 - changes the mode to line mode (default)
  	2 - changes the mode to sphere mode
  	0 - secret mode
- 	F11 - toggles fullscreen mode
+ 	F11 - toggles fullscreen mode (freeglut only)
