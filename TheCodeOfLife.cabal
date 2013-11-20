@@ -1,8 +1,13 @@
 name:           TheCodeOfLife
-version:        0.1
-cabal-version:  >=1.2
+version:        1.0
+cabal-version:  >= 1.2
 build-type:     Simple
-author:         ejhunter
+author:         Euan Hunter
+license:        GPL-3
+copyright:      2013 Euan Hunter
+license-file:   LICENSE.txt
+description:    Renders a 3D interactive model of DNA (a double helix) in a recursive manner in which the bonds of the DNA are made up of more double helices and so on. Be Warned! This program can be very tasking for you PC
+synopsis:       The Code Of Life
 
 executable TheCodeOfLife
   hs-source-dirs:  src

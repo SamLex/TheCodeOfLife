@@ -31,7 +31,7 @@ main = Main.init
 
 init :: IO()
 init = do
-        dna <- newIORef (genDNA (newDNA 3) 1.0 1.0)
+        dna <- newIORef (genDNA (newDNA 2) 1.0 1.0)
         mode <- newIORef 0
         level <- newIORef 2
         update <- newIORef False

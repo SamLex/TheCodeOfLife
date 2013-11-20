@@ -15,3 +15,4 @@ Keyboard Controls:
  	1 - changes the mode to line mode (default)
  	2 - changes the mode to sphere mode
  	0 - secret mode
+ 	F11 - toggles fullscreen mode
