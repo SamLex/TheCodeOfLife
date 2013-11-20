@@ -6,7 +6,11 @@ author:         Euan Hunter
 license:        GPL-3
 copyright:      2013 Euan Hunter
 license-file:   LICENSE.txt
-description:    Renders a 3D interactive model of DNA (a double helix) in a recursive manner in which the bonds of the DNA are made up of more double helices and so on. Be Warned! This program can be very tasking for you PC
+description:    
+                Renders a 3D interactive model of DNA (a double helix) in a recursive manner in which the bonds 
+                of the DNA are made up of more double helices and so on. Be Warned! This program can be very 
+                tasking for you PC. Renders a 3D interactive model of DNA (a double helix) in a recursive manner in which the bonds of the DNA are made up of more double helices and so on. Be Warned! This program can be very tasking for you PC
+                Entry for the Inf1–FP Programming Competition 2013
 synopsis:       The Code Of Life
 
 executable TheCodeOfLife
