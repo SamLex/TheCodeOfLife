@@ -39,7 +39,7 @@ renderHelix helix mode | mode == 0 = renderPrimitive LineStrip $ mapM_ ver3d hel
                                                 preservingMatrix $ do
                                                         translate $ vec3f x y z
                                                         rotate (-90) $ vec3f 1.0 0.0 0.0
-                                                        renderObject Solid (Teapot (distanceBetween (head helix) (head (tail helix))/2))
+                                                        renderObject Solid (Teapot (distanceBetween (head helix) (head (tail helix))/2)) -- Easter Egg :)
 
 newHelix :: GLdouble -> GLdouble -> Helix GLdouble GLdouble
 newHelix = Helix
