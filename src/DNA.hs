@@ -52,7 +52,7 @@ renderDNA d md = r d md (length d)
 
 genDNA :: DNA Int -> GLdouble -> GLdouble -> DNAModel
 genDNA (DNA 0) _ _= []
-genDNA (DNA l) h r = genDHelix (newHelix h r) 10.0 : genDNA (newDNA (l-1)) ((1/(2*pi)) * h) (0.125 * r)
+genDNA (DNA l) h r = genDHelix (newHelix h r) 10 : genDNA (newDNA (l-1)) ((1/(2*pi)) * h) (0.125 * r)
 
 newDNA :: Int -> DNA Int
 newDNA = DNA

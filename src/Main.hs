@@ -18,6 +18,8 @@
 module Main where
 
 import Data.IORef
+import Data.Char
+import Control.Monad
 import Graphics.UI.GLUT
 
 import Display
@@ -31,28 +33,38 @@ main = Main.init
 
 init :: IO()
 init = do
+        
         dna <- newIORef (genDNA (newDNA 2) 1.0 1.0)
         mode <- newIORef 0
         level <- newIORef 2
         update <- newIORef False
+        interactive <- newIORef True
         rx <- newIORef 0.0
         ry <- newIORef 0.0
         rz <- newIORef 0.0
         tx <- newIORef 0.0
         ty <- newIORef 0.0
         zoom <- newIORef 0.25
-        state <- newIORef (newProgramState dna mode level update rx ry rz tx ty zoom)
+        state <- newIORef (newProgramState dna mode level update interactive rx ry rz tx ty zoom)
 
         (_progName, _args) <- getArgsAndInitialize
+        parseArgs _args interactive level dna
+        
         initialDisplayMode $= [WithDepthBuffer, DoubleBuffered, WithSamplesPerPixel 16]
         _window <- createWindow "The Code of Life"
         depthFunc $= Just Less
 
         reshapeCallback $= Just handleReshape
-        keyboardMouseCallback $= Just (input state)
-        idleCallback $= Just (animate state)
+        inter <- get interactive
+        when inter (keyboardMouseCallback $= Just (input state))
+        when inter (idleCallback $= Just (animate state))
         displayCallback $= display state
 
         windowSize $= Size 800 800
 
         mainLoop
+
+parseArgs :: [String] -> IORef Bool -> IORef Int -> IORef DNAModel -> IO ()
+parseArgs [] interactive level _ = level $= 2 >> interactive $= True
+parseArgs [s:_] interactive level dna | isDigit s = level $= digitToInt s >> interactive $= False >> dna $= genDNA (newDNA (digitToInt s)) 1.0 1.0
+                                      | otherwise = level $= 2 >> interactive $= True

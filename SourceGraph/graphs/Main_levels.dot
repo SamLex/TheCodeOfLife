@@ -9,6 +9,10 @@ digraph "Levels within Main" {
           ,shape=box
           ,fillcolor=crimson
           ,style="filled,bold"];
+        3 [label=parseArgs
+          ,shape=box
+          ,fillcolor=crimson
+          ,style="filled,bold"];
     }
     subgraph cluster_0 {
         graph [label="Exported root entities"
@@ -19,4 +23,6 @@ digraph "Levels within Main" {
           ,fillcolor=gold
           ,style="filled,bold"];
     }
+    1 -> 3 [penwidth=1
+           ,color=chartreuse];
 }

@@ -69,6 +69,7 @@
 <li><a><span class="toc-section-number">5.6.3</span> Cyclomatic Complexity of <em>Main</em></a></li>
 <li><a><span class="toc-section-number">5.6.4</span> Root analysis of <em>Main</em></a></li>
 <li><a><span class="toc-section-number">5.6.5</span> Component analysis of <em>Main</em></a></li>
+<li><a><span class="toc-section-number">5.6.6</span> Chain analysis of <em>Main</em></a></li>
 </ul></li>
 <li><a><span class="toc-section-number">5.7</span> Analysis of <em>Math</em></a><ul>
 <li><a><span class="toc-section-number">5.7.1</span> Visualisation of <em>Math</em></a></li>
@@ -140,21 +141,21 @@
 <p>Visualises how far away from the exported root entities an entity is.</p>
 <p><a href="graphs/code_levels.svg"><img src="graphs/code_levels.png" alt="Levels within software" /></a></p>
 <h2><span class="header-section-number">3.4</span> Overall Cyclomatic Complexity</h2>
-<p>The overall cyclomatic complexity is: 66</p>
+<p>The overall cyclomatic complexity is: 69</p>
 <p>For more information on cyclomatic complexity, please see: <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">Wikipedia: Cyclomatic Complexity</a></p>
 <h2><span class="header-section-number">3.5</span> Overall root analysis</h2>
 <p>These functions are those that are inaccessible:</p>
 <p><em>DNA.DNA,  DNA.genDNA,  DNA.newDNA,  DNA.renderDNA, 
-DNA.updateModel,  Display.animate, 
-Display.display,  Display.handleReshape, 
-DoubleHelix.extractHeight,  DoubleHelix.genDHelix, 
-DoubleHelix.renderDHelix,  Helix.Helix, 
-Helix.extractHeight,  Helix.genHelix, 
+DNA.updateModel,  Display.animate,  Display.display, 
+Display.handleReshape,  DoubleHelix.extractHeight, 
+DoubleHelix.genDHelix,  DoubleHelix.renderDHelix, 
+Helix.Helix,  Helix.extractHeight,  Helix.genHelix, 
 Helix.newHelix,  Helix.renderHelix,  Input.input, 
-Input.update,  Main.init,  Math.distanceBetween, 
-Math.fromTo,  Math.phi,  Misc.colour, 
-Misc.evenScale,  Misc.vec3f,  Misc.ver3d, 
-ProgramState.extractDNARef, 
+Input.update,  Main.init,  Main.parseArgs, 
+Math.distanceBetween,  Math.fromTo,  Math.phi, 
+Misc.colour,  Misc.evenScale,  Misc.vec3f, 
+Misc.ver3d,  ProgramState.extractDNARef, 
+ProgramState.extractInteractiveRef, 
 ProgramState.extractLevelRef, 
 ProgramState.extractModeRef, 
 ProgramState.extractRXRef, 
@@ -166,7 +167,7 @@ ProgramState.extractUpdateRef,
 ProgramState.extractZoomRef, 
 ProgramState.newProgramState</em></p>
 <h2><span class="header-section-number">3.6</span> Function component analysis</h2>
-<p>The functions are split up into 3 components.  You may wish to consider splitting the code up into multiple libraries.</p>
+<p>The functions are split up into 4 components.  You may wish to consider splitting the code up into multiple libraries.</p>
 <h2><span class="header-section-number">3.7</span> Overall chain analysis</h2>
 <p>The code has the following cross-module chains:</p>
 <ul>
@@ -257,9 +258,17 @@ ProgramState.newProgramState</em></p>
 <p>For more information on cyclomatic complexity, please see: <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">Wikipedia: Cyclomatic Complexity</a></p>
 <h3><span class="header-section-number">5.6.4</span> Root analysis of <em>Main</em></h3>
 <p>These functions are those that are inaccessible:</p>
-<p><em>init</em></p>
+<p><em>init, 
+parseArgs</em></p>
 <h3><span class="header-section-number">5.6.5</span> Component analysis of <em>Main</em></h3>
 <p>The module Main has 2 components.  You may wish to consider splitting it up.</p>
+<h3><span class="header-section-number">5.6.6</span> Chain analysis of <em>Main</em></h3>
+<p>The module Main has the following chains:</p>
+<ul>
+<li><p>init
+-&gt; parseArgs</p></li>
+</ul>
+<p>These chains can all be compressed down to a single function.</p>
 <h2><span class="header-section-number">5.7</span> Analysis of <em>Math</em></h2>
 <h3><span class="header-section-number">5.7.1</span> Visualisation of <em>Math</em></h3>
 <p><a href="graphs/Math.svg"><img src="graphs/Math.png" alt="Diagram of: Math" /></a></p>
@@ -289,9 +298,9 @@ ProgramState.newProgramState</em></p>
 <p>Visualises how far away from the exported root entities an entity is.</p>
 <p><a href="graphs/ProgramState_levels.svg"><img src="graphs/ProgramState_levels.png" alt="Levels within ProgramState" /></a></p>
 <h3><span class="header-section-number">5.9.3</span> Cyclomatic Complexity of <em>ProgramState</em></h3>
-<p>The cyclomatic complexity of ProgramState is: 11.</p>
+<p>The cyclomatic complexity of ProgramState is: 12.</p>
 <p>For more information on cyclomatic complexity, please see: <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">Wikipedia: Cyclomatic Complexity</a></p>
 <h3><span class="header-section-number">5.9.4</span> Component analysis of <em>ProgramState</em></h3>
-<p>The module ProgramState has 11 components.  You may wish to consider splitting it up.</p>
+<p>The module ProgramState has 12 components.  You may wish to consider splitting it up.</p>
 </body>
 </html>

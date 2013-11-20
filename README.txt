@@ -8,6 +8,8 @@ Entry for the Inf1–FP Programming Competition 2013
 
 Usage:
 Compile the code using ghc --make Main and then run the executable that it generates. Not all features may work on Windows and OS X
+Can also be run with a digit between 1 and 9 as it's argument. This sets the recursion level to that number and disables interactivity. This is so that recursion 
+levels too high for interactive mode can still be seen. Please be patient as these can take a long time to render
 
 Keyboard Controls:
 
