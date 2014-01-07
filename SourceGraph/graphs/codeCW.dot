@@ -48,50 +48,6 @@ digraph "Chinese Whispers module suggestions" {
     subgraph cluster_2 {
         graph [style=filled
               ,fillcolor=lavender];
-        4 [label="DNA\nrenderDNA"
-          ,shape=box
-          ,fillcolor=crimson
-          ,style="filled,solid"];
-        7 [label="Display\ndisplay"
-          ,shape=box
-          ,fillcolor=crimson
-          ,style="filled,solid"];
-        11 [label="DoubleHelix\nrenderDHelix"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        16 [label="Helix\nrenderHelix"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        22 [label="Math\ndistanceBetween"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        24 [label="Math\nphi"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        25 [label="Misc\ncolour"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        26 [label="Misc\nevenScale"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        27 [label="Misc\nvec3f"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        28 [label="Misc\nver3d"
-           ,shape=box
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-    }
-    subgraph cluster_3 {
-        graph [style=filled
-              ,fillcolor=lavender];
         1 [label="DNA\nData: DNA"
           ,shape=box3d
           ,fillcolor=crimson
@@ -112,6 +68,10 @@ digraph "Chinese Whispers module suggestions" {
           ,shape=box
           ,fillcolor=crimson
           ,style="filled,solid"];
+        10 [label="DoubleHelix\ngenDHelix"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
         19 [label="Main\ninit"
            ,shape=box
            ,fillcolor=crimson
@@ -120,7 +80,23 @@ digraph "Chinese Whispers module suggestions" {
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
-        40 [label="ProgramState\nnewProgramState"
+    }
+    subgraph cluster_3 {
+        graph [style=filled
+              ,fillcolor=lavender];
+        7 [label="Display\ndisplay"
+          ,shape=box
+          ,fillcolor=crimson
+          ,style="filled,solid"];
+        26 [label="Misc\nevenScale"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+        27 [label="Misc\nvec3f"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+        29 [label="ProgramState\nextractDNARef"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
@@ -128,15 +104,15 @@ digraph "Chinese Whispers module suggestions" {
     subgraph cluster_4 {
         graph [style=filled
               ,fillcolor=lavender];
-        6 [label="Display\nanimate"
+        4 [label="DNA\nrenderDNA"
           ,shape=box
           ,fillcolor=crimson
           ,style="filled,solid"];
-        29 [label="ProgramState\nextractDNARef"
+        11 [label="DoubleHelix\nrenderDHelix"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
-        38 [label="ProgramState\nextractUpdateRef"
+        25 [label="Misc\ncolour"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
@@ -144,15 +120,15 @@ digraph "Chinese Whispers module suggestions" {
     subgraph cluster_5 {
         graph [style=filled
               ,fillcolor=lavender];
-        12 [label="Helix\nData: Helix"
-           ,shape=box3d
-           ,fillcolor=crimson
-           ,style="filled,solid"];
-        13 [label="Helix\nextractHeight"
+        16 [label="Helix\nrenderHelix"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
-        15 [label="Helix\nnewHelix"
+        22 [label="Math\ndistanceBetween"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+        28 [label="Misc\nver3d"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
@@ -160,11 +136,11 @@ digraph "Chinese Whispers module suggestions" {
     subgraph cluster_6 {
         graph [style=filled
               ,fillcolor=lavender];
-        10 [label="DoubleHelix\ngenDHelix"
+        14 [label="Helix\ngenHelix"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
-        14 [label="Helix\ngenHelix"
+        24 [label="Math\nphi"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
@@ -172,12 +148,44 @@ digraph "Chinese Whispers module suggestions" {
     subgraph cluster_7 {
         graph [style=filled
               ,fillcolor=lavender];
+        12 [label="Helix\nData: Helix"
+           ,shape=box3d
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+        15 [label="Helix\nnewHelix"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+    }
+    subgraph cluster_8 {
+        graph [style=filled
+              ,fillcolor=lavender];
+        6 [label="Display\nanimate"
+          ,shape=box
+          ,fillcolor=crimson
+          ,style="filled,solid"];
+        38 [label="ProgramState\nextractUpdateRef"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+    }
+    subgraph cluster_9 {
+        graph [style=filled
+              ,fillcolor=lavender];
         9 [label="DoubleHelix\nextractHeight"
           ,shape=box
           ,fillcolor=crimson
           ,style="filled,solid"];
     }
-    subgraph cluster_8 {
+    subgraph cluster_10 {
+        graph [style=filled
+              ,fillcolor=lavender];
+        13 [label="Helix\nextractHeight"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+    }
+    subgraph cluster_11 {
         graph [style=filled
               ,fillcolor=lavender];
         20 [label="Main\nmain"
@@ -185,7 +193,7 @@ digraph "Chinese Whispers module suggestions" {
            ,fillcolor=gold
            ,style="filled,solid"];
     }
-    subgraph cluster_9 {
+    subgraph cluster_12 {
         graph [style=filled
               ,fillcolor=lavender];
         23 [label="Math\nfromTo"
@@ -193,10 +201,18 @@ digraph "Chinese Whispers module suggestions" {
            ,fillcolor=crimson
            ,style="filled,solid"];
     }
-    subgraph cluster_10 {
+    subgraph cluster_13 {
         graph [style=filled
               ,fillcolor=lavender];
         30 [label="ProgramState\nextractInteractiveRef"
+           ,shape=box
+           ,fillcolor=crimson
+           ,style="filled,solid"];
+    }
+    subgraph cluster_14 {
+        graph [style=filled
+              ,fillcolor=lavender];
+        40 [label="ProgramState\nnewProgramState"
            ,shape=box
            ,fillcolor=crimson
            ,style="filled,solid"];
